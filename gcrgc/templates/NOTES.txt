@@ -1,0 +1,6 @@
+The GCR Garbage Collector has been deployed as a CronJob.
+
+The CronJob schedule is set to {{ .Values.schedule | quote }}.
+
+You can manually trigger a job run:
+kubectl create job --namespace {{ .Release.Namespace }} --from=cronjob/{{ include "gcrgc.fullname" . }} {{ include "gcrgc.fullname" . }}-manual

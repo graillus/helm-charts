@@ -1,2 +1,6 @@
-# helm-charts
-Helm chart repository
+helm-charts
+===========
+
+My personal Helm charts repository.
+
+Contributions are welcome, just submit PRs ;)

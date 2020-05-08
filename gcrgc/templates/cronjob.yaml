@@ -1,0 +1,72 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ include "gcrgc.fullname" . }}
+  labels:
+    {{- include "gcrgc.labels" . | nindent 4 }}
+spec:
+  schedule: {{ .Values.schedule | quote }}
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+  startingDeadlineSeconds: 60
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            {{- include "gcrgc.labels" . | nindent 12 }}
+          annotations:
+            {{- toYaml .Values.podAnnotations | nindent 12 }}
+        spec:
+        {{- with .Values.imagePullSecrets }}
+          imagePullSecrets:
+            {{- toYaml . | nindent 12 }}
+        {{- end }}
+          serviceAccountName: {{ include "gcrgc.serviceAccountName" . }}
+          securityContext:
+            {{- toYaml .Values.podSecurityContext | nindent 12 }}
+          containers:
+            - name: {{ .Chart.Name }}
+              securityContext:
+                {{- toYaml .Values.securityContext | nindent 16 }}
+              image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
+              command: ["gcrgc"]
+              args:
+                {{- toYaml .Values.args | nindent 16 }}
+              env:
+                - name: GOOGLE_APPLICATION_CREDENTIALS
+                {{- if .Values.existingSecretName }}
+                  value:  /credentials/{{ .Values.existingSecretPath }}
+                {{- else }}
+                  value:  /credentials/credentials.json
+                {{- end }}
+              volumeMounts:
+                - name: credentials
+                  mountPath: /credentials
+                  readOnly: true
+              resources:
+                {{- toYaml .Values.resources | nindent 16 }}
+          volumes:
+            - name: credentials
+              secret:
+              {{- if .Values.existingSecret }}
+                secretName: {{ .Values.existingSecret.secretName }}
+              {{- else }}
+                secretName: {{ include "gcrgc.fullname" . }}
+              {{- end }}
+                defaultMode: 400
+
+        {{- with .Values.nodeSelector }}
+          nodeSelector:
+            {{- toYaml . | nindent 12 }}
+        {{- end }}
+        {{- with .Values.affinity }}
+          affinity:
+            {{- toYaml . | nindent 12 }}
+        {{- end }}
+        {{- with .Values.tolerations }}
+          tolerations:
+            {{- toYaml . | nindent 12 }}
+        {{- end }}

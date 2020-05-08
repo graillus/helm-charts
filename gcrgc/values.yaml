@@ -1,0 +1,74 @@
+image:
+  repository: graillus/gcrgc
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+# CronJob schedule
+# Defaults to everyday at 00:00 UTC
+schedule: "0 0 * * *"
+
+# Arguments for the gcrgc container
+args:
+  - -repository=gcr.io/example-project
+  - -retention-period=30d
+  - -exclude-tag=latest
+  - -dry-run
+  - example-image
+
+# Annotations to add to the pods
+podAnnotations: {}
+
+# Name of the secret containing google service account credentials.
+# If left blank a new secret will be created
+existingSecretName: ""
+# Secret key containing credentials data
+existingSecretPath: "credentials.json"
+
+# Used to provide Google service account credentials if you don't want to use an existing secret.
+# A new secret will be created containing the credentials.
+# Note that providing secret data when installing a chart is insecure.
+secret:
+  create: false
+  annotations: {}
+  credentials: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
