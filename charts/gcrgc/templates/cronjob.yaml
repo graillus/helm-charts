@@ -5,11 +5,13 @@ metadata:
   labels:
     {{- include "gcrgc.labels" . | nindent 4 }}
 spec:
-  schedule: {{ .Values.schedule | quote }}
-  concurrencyPolicy: {{ .Values.concurrencyPolicy }}
-  successfulJobsHistoryLimit: {{ .Values.successfulJobsHistoryLimit }}
-  failedJobsHistoryLimit: {{ .Values.failedJobsHistoryLimit }}
-  startingDeadlineSeconds: {{ .Values.startingDeadlineSeconds }}
+  {{- with .Values.cronjob }}
+  schedule: {{ .schedule | quote }}
+  concurrencyPolicy: {{ .concurrencyPolicy }}
+  successfulJobsHistoryLimit: {{ .successfulJobsHistoryLimit }}
+  failedJobsHistoryLimit: {{ .failedJobsHistoryLimit }}
+  startingDeadlineSeconds: {{ .startingDeadlineSeconds }}
+  {{- end }}
   jobTemplate:
     spec:
       template:

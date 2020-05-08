@@ -12,6 +12,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
+      - name: Unshallow
+        run: git fetch --prune --unshallow
+
       - name: Configure Git
         run: |
           git config user.name "$GITHUB_ACTOR"
@@ -19,8 +22,5 @@ jobs:
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.0.0-rc.1
-        with:
-          charts_dir: charts
-          charts_repo_url: https://graillus.github.io/helm-charts
         env:
           CR_TOKEN: "${{ secrets.CR_TOKEN }}"
