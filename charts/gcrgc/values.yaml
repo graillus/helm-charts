@@ -3,6 +3,7 @@ image:
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
+
 nameOverride: ""
 fullnameOverride: ""
 
@@ -11,6 +12,7 @@ fullnameOverride: ""
 schedule: "0 0 * * *"
 
 # Arguments for the gcrgc container
+# Read the documentation at https://github.com/graillus/gcrgc
 args:
   - -repository=gcr.io/example-project
   - -retention-period=30d

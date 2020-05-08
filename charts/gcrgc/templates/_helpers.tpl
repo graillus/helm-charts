@@ -36,19 +36,10 @@ Common labels
 */}}
 {{- define "gcrgc.labels" -}}
 helm.sh/chart: {{ include "gcrgc.chart" . }}
-{{ include "gcrgc.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
-{{- end -}}
-
-{{/*
-Selector labels
-*/}}
-{{- define "gcrgc.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "gcrgc.name" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 
 {{/*

@@ -1,5 +1,5 @@
-graillus/helm-charts
-====================
+helm-charts
+===========
 
 My personal Helm charts repository.
 
@@ -13,4 +13,4 @@ helm repo add graillus https://graillus.github.io/helm-charts
 
 Contributions are welcome, just submit PRs ;)
 
-Github repository: https://github.com/graillus/helm-charts
+Github repository: [https://github.com/graillus/helm-charts](https://github.com/graillus/helm-charts)
