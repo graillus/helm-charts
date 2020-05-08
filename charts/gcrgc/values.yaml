@@ -7,9 +7,14 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
-# CronJob schedule
-# Defaults to everyday at 00:00 UTC
-schedule: "0 0 * * *"
+cronjob:
+  # CronJob schedule
+  # Defaults to everyday at 00:00 UTC
+  schedule: "0 0 * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+  startingDeadlineSeconds: 60
 
 # Arguments for the gcrgc container
 # Read the documentation at https://github.com/graillus/gcrgc
