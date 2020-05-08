@@ -16,3 +16,5 @@ kubectl create secret generic google-credentials --from-file=credentials.json
 helm repo add graillus https://graillus.github.io/helm-charts
 helm install gcrgc graillus/gcrgc --existingSecretName=google-credentials
 ```
+
+See the `values.yaml` file for more options
