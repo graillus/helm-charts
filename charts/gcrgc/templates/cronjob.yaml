@@ -58,7 +58,7 @@ spec:
               {{- else }}
                 secretName: {{ include "gcrgc.fullname" . }}
               {{- end }}
-                defaultMode: 400
+                defaultMode: 600
 
         {{- with .Values.nodeSelector }}
           nodeSelector:
