@@ -3,6 +3,22 @@ entries:
   gcrgc:
   - apiVersion: v2
     appVersion: 0.3.3
+    created: "2020-07-09T16:37:55.946386228Z"
+    description: A Helm chart for the GCR Garbage Collector
+    digest: 25d713c9ed8960889b854f78fc9bb12d7501c24a7f029e57b122d511bba2b626
+    maintainers:
+    - email: robin.graillon@gmail.com
+      name: Robin Graillon
+      url: https://github.com/graillus
+    name: gcrgc
+    sources:
+    - https://github.com/graillus/helm-charts
+    type: application
+    urls:
+    - https://github.com/graillus/helm-charts/releases/download/gcrgc-0.1.9/gcrgc-0.1.9.tgz
+    version: 0.1.9
+  - apiVersion: v2
+    appVersion: 0.3.3
     created: "2020-07-09T16:29:25.705757325Z"
     description: A Helm chart for the GCR Garbage Collector
     digest: ea2c221a6d5cab213341f1de118fbf5fd53920416918b839da5583321f01c8a7
