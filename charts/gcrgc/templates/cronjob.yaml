@@ -25,6 +25,7 @@ spec:
           imagePullSecrets:
             {{- toYaml . | nindent 12 }}
         {{- end }}
+          restartPolicy: Never
           serviceAccountName: {{ include "gcrgc.serviceAccountName" . }}
           securityContext:
             {{- toYaml .Values.podSecurityContext | nindent 12 }}
