@@ -1,6 +1,6 @@
 apiVersion: v2
 name: gcrgc
-version: 0.1.5
+version: 0.1.6
 description: A Helm chart for the GCR Garbage Collector
 type: application
 sources:
@@ -9,4 +9,4 @@ maintainers:
   - name: Robin Graillon
     email: robin.graillon@gmail.com
     url: https://github.com/graillus
-appVersion: 0.3.2
+appVersion: 0.3.3
