@@ -19,7 +19,7 @@ cronjob:
 # Arguments for the gcrgc container
 # Read the documentation at https://github.com/graillus/gcrgc
 args:
-  - -repository=gcr.io/example-project
+  - -registry=gcr.io/example-project
   - -retention-period=30d
   - -exclude-tag=latest
   - -dry-run
