@@ -37,7 +37,12 @@ spec:
               imagePullPolicy: {{ .Values.image.pullPolicy }}
               command: ["gcrgc"]
               args:
-                {{- toYaml .Values.args | nindent 16 }}
+                {{- if .Values.config }}
+                - --config=/config/config.yaml
+                {{- end }}
+                {{- if .Values.extraArgs }}
+                {{- toYaml .Values.extraArgs | nindent 16 }}
+                {{- end }}
               env:
                 - name: GOOGLE_APPLICATION_CREDENTIALS
                 {{- if .Values.existingSecretName }}
@@ -46,12 +51,22 @@ spec:
                   value:  /credentials/credentials.json
                 {{- end }}
               volumeMounts:
+              {{- if .Values.config }}
+                - name: config
+                  mountPath: /config
+                  readOnly: true
+              {{- end }}
                 - name: credentials
                   mountPath: /credentials
                   readOnly: true
               resources:
                 {{- toYaml .Values.resources | nindent 16 }}
           volumes:
+            {{- if .Values.config }}
+            - name: config
+              configMap:
+                name: {{ include "gcrgc.fullname" . }}
+            {{- end }}
             - name: credentials
               secret:
               {{- if .Values.existingSecretName }}
