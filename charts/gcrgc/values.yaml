@@ -16,14 +16,25 @@ cronjob:
   failedJobsHistoryLimit: 1
   startingDeadlineSeconds: 60
 
-# Arguments for the gcrgc container
+# Configuration to be used by the gcrgc. It will be mounted int the pod as config file.
+# If empty, no config file will be used but command-line args via the extraArgs variable.
 # Read the documentation at https://github.com/graillus/gcrgc
-args:
-  - -registry=gcr.io/example-project
-  - -retention-period=30d
-  - -exclude-tag=latest
-  - -dry-run
-  - example-image
+config:
+#  registry: gcr.io/project-id
+#  retention-period: 30d
+#  repositories:
+#    - nginx
+#  exclude-tags:
+#    - latest
+#  exclude-semver-tags: true
+
+# Extra arguments to pass to the gcrgc container.
+extraArgs:
+#  - --repositories=example-image,other-image
+#  - --retention-period=60d
+#  - --exclude-tags=latest
+#  - --dry-run
+#  - gcr.io/project-id
 
 # Annotations to add to the pods
 podAnnotations: {}
