@@ -1,6 +1,6 @@
 replicaCount: 1
 image:
-  repository: translations-refresher
+  repository: graillus/translations-refresher
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   # tag: "latest"
