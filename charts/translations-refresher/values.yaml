@@ -34,6 +34,10 @@ service:
 
 serviceAnnotations: {}
 
+cron:
+  enabled: true
+  period: 30s
+
 webhook:
   certificate:
     generate: true
