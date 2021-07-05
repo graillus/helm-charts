@@ -61,3 +61,63 @@ webhooks:
       values:
       - "true"
   sideEffects: {{ .Values.webhook.apiSideEffectValue }}
+- name: daemonsets.{{ template "translations-refresher.name" . }}.admission.etsglobal.org
+  admissionReviewVersions: ["v1beta1"]
+  {{- if .Values.webhook.timeoutSeconds }}
+  timeoutSeconds: {{ .Values.webhook.timeoutSeconds }}
+  {{- end }}
+  clientConfig:
+    service:
+      namespace: {{ .Release.Namespace }}
+      name: {{ template "translations-refresher.fullname" . }}
+      port: {{ .Values.service.webhookPort }}
+      path: /daemonsets
+    caBundle: {{ $caCrt }}
+  rules:
+  - apiGroups:
+    - "*"
+    apiVersions:
+    - "*"
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - daemonsets
+  failurePolicy: {{ .Values.webhook.failurePolicy }}
+  objectSelector:
+    matchExpressions:
+    - key: translations.etsglobal.org/refresh
+      operator: In
+      values:
+      - "true"
+  sideEffects: {{ .Values.webhook.apiSideEffectValue }}
+- name: statefulsets.{{ template "translations-refresher.name" . }}.admission.etsglobal.org
+  admissionReviewVersions: ["v1beta1"]
+  {{- if .Values.webhook.timeoutSeconds }}
+  timeoutSeconds: {{ .Values.webhook.timeoutSeconds }}
+  {{- end }}
+  clientConfig:
+    service:
+      namespace: {{ .Release.Namespace }}
+      name: {{ template "translations-refresher.fullname" . }}
+      port: {{ .Values.service.webhookPort }}
+      path: /statefulsets
+    caBundle: {{ $caCrt }}
+  rules:
+  - apiGroups:
+    - "*"
+    apiVersions:
+    - "*"
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - statefulsets
+  failurePolicy: {{ .Values.webhook.failurePolicy }}
+  objectSelector:
+    matchExpressions:
+    - key: translations.etsglobal.org/refresh
+      operator: In
+      values:
+      - "true"
+  sideEffects: {{ .Values.webhook.apiSideEffectValue }}

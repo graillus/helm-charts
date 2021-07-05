@@ -2,11 +2,11 @@ apiVersion: v2
 name: translations-refresher
 description: Helm chart for https://github.com/graillus/translations-refresher
 type: application
-version: 0.1.2
+version: 0.1.3
 sources:
   - https://github.com/graillus/helm-charts
 maintainers:
   - name: Robin Graillon
     email: robin.graillon@gmail.com
     url: https://github.com/graillus
-appVersion: 0.1.0
+appVersion: 0.1.1
