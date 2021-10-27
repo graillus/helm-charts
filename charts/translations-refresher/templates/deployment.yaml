@@ -33,8 +33,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           args:
             {{- if .Values.cron.enabled }}
-            - -cron=true
-            - -period={{ .Values.cron.period }}
+            - -schedule={{ .Values.cron.schedule }}
             {{- end }}
             - -webhook=true
           ports:
