@@ -36,7 +36,7 @@ serviceAnnotations: {}
 
 cron:
   enabled: true
-  period: 30s
+  schedule: */5 * * * *
 
 webhook:
   certificate:
