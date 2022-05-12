@@ -99,6 +99,22 @@ entries:
     version: 0.1.4
   translations-refresher:
   - apiVersion: v2
+    appVersion: 0.3.0
+    created: "2022-05-12T13:38:43.639153834Z"
+    description: Helm chart for https://github.com/graillus/translations-refresher
+    digest: 5b02d610eb525b837f6ad516cc8349bf55288b9fe3239f4584bd2e3df63cbc53
+    maintainers:
+    - email: robin.graillon@gmail.com
+      name: Robin Graillon
+      url: https://github.com/graillus
+    name: translations-refresher
+    sources:
+    - https://github.com/graillus/helm-charts
+    type: application
+    urls:
+    - https://github.com/graillus/helm-charts/releases/download/translations-refresher-0.3.0/translations-refresher-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
     appVersion: 0.2.2
     created: "2021-10-29T14:07:13.488242986Z"
     description: Helm chart for https://github.com/graillus/translations-refresher
@@ -194,4 +210,4 @@ entries:
     urls:
     - https://github.com/graillus/helm-charts/releases/download/translations-refresher-0.1.0/translations-refresher-0.1.0.tgz
     version: 0.1.0
-generated: "2021-10-29T14:07:13.488281087Z"
+generated: "2022-05-12T13:38:43.639263634Z"
